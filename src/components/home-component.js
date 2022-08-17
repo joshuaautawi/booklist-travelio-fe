@@ -25,7 +25,9 @@ function Home() {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    
     setInputValue(e.target[0].value);
+    setParam("")
   };
 
   const filtered = async (id) => {
@@ -55,7 +57,7 @@ function Home() {
           value={param}
           onChange={(e) => setParam(e.target.value)}
         ></input>
-        <button type="submit" className="button">
+        <button type="submit" className="button" >
           Search
         </button>
       </form>
