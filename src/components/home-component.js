@@ -34,10 +34,11 @@ function Home() {
     const filterValue = booklists.items.find((e) => e.id === id);
     try {
       setLoadingButton(true);
+      console.log(filterValue.volumeInfo)
       await axios.post(WISHLISH_API, {
         title: filterValue.volumeInfo.title,
         thumbnail: filterValue.volumeInfo.imageLinks.thumbnail,
-        authors: filterValue.volumeInfo.authors,
+        author: filterValue.volumeInfo.authors,
         rating: filterValue.volumeInfo.averageRating || 0,
       });
     } catch (e) {
