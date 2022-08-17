@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 const BASE_API = "https://www.googleapis.com/books/v1/volumes?q=";
@@ -7,6 +7,8 @@ const WISHLISH_API = "https://travellio-wish-list.herokuapp.com/wishlist";
 
 function Added() {
   let { id } = useParams();
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
   useEffect(() => {
     getBookById();
   }, []);
@@ -21,6 +23,8 @@ function Added() {
         authors: data.data.items[0].volumeInfo.authors,
         rating: data.data.items[0].volumeInfo.averageRating || 0,
       });
+      setLoading(false);
+      navigate("/");
     } catch (e) {
       console.log("error");
     }
@@ -28,7 +32,8 @@ function Added() {
 
   return (
     <div className="App">
-      <h1>Added to Watchlist</h1>
+      {loading && <h1>Loading...</h1>}
+     
     </div>
   );
 }

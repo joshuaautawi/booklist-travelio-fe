@@ -7,8 +7,7 @@ const axios = require("axios");
 
 function Home() {
   const [booklists, setBookList] = useState([]);
-  const [param, setParam] = useState("");
-  const [newWishlist, setNewWishlist] = useState("");
+  let [param, setParam] = useState("");
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   useEffect(() => {
@@ -16,23 +15,17 @@ function Home() {
   }, []);
 
   const GetBookList = async () => {
-    const data = await axios.get(BASE_API + "coffee");
+    console.log({ param });
+    if (!param) param = "dog";
+    const data = await axios.get(BASE_API + param);
     setBookList(data.data);
     setLoading(false);
   };
 
-  const addToWishlish = async (title, thumbnail, authors, rating) => {
-    await axios.post(WISHLISH_API, {
-      title,
-      thumbnail,
-      authors,
-      rating,
-    });
-  };
   return (
     <div className="App">
-      {loading && <h1>Loading mass...</h1>}
-      <form className="search-form" target="_blank">
+      {loading && <h1>Loading...</h1>}
+      <form className="search-form">
         <input
           className="input"
           placeholder="input"
@@ -46,7 +39,6 @@ function Home() {
       {!loading && (
         <div className="booklists">
           {booklists.items.map((list, index) => {
-            console.log({ id: list });
             return (
               <div className="booklist" key={list._id}>
                 <div className="thumbnail">
