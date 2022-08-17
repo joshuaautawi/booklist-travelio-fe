@@ -137,3 +137,9 @@ logo {
 	cursor : pointer;
 	margin-top : 30px;
 }
+
+.booklist .add-wishlist-button{
+	padding: 5px 10px;
+	margin-top : 5px;
+	border-radius : 3px;
+}

@@ -11,7 +11,7 @@ function Added() {
   const navigate = useNavigate();
   useEffect(() => {
     getBookById();
-  }, []);
+  },[]);
   const getBookById = async (e) => {
     if (e && e.preventDefault) e.preventDefault();
     try {
@@ -30,12 +30,7 @@ function Added() {
     }
   };
 
-  return (
-    <div className="App">
-      {loading && <h1>Loading...</h1>}
-     
-    </div>
-  );
+  return <div className="App">{loading && <h1>Loading...</h1>}</div>;
 }
 
 export default Added;
